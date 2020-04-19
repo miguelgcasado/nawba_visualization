@@ -1,1 +1,5 @@
+# Pycharm
+.idea
+
+# don't add .txt to exclude some unimportant files
 *.txt
