@@ -1,0 +1,3 @@
+query_pattern,output_pattern,similarity
+ABAGE,EDC,0.69230769
+BAG,EDC,0.76923077

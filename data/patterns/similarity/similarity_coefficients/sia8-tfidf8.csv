@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+GRREF#GF#GF#GF#GR,E-CD,0.82352941
+DRAGE-DCE-D,E-DC,0.64705882
+ARRCBAGF#EE,E-DC,0.76470588

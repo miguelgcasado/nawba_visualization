@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+DEF#G,CDE,0.92307692
+DCBAG,BAG,0.61538462
+CBAG,BAG,0.69230769

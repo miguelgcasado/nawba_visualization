@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+GRREF#GF#GF#GF#GR,EF#G,0.81250000
+DRAGE-DCE-D,FED,0.68750000
+DREGDRCBCD,F#GA,0.62500000

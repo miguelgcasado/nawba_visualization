@@ -1,0 +1,3 @@
+query_pattern,output_pattern,similarity
+FEDC,FED,0.87500000
+CBAG,DCBAG,0.40625000

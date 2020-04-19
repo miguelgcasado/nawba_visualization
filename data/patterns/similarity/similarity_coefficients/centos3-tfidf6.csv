@@ -1,0 +1,5 @@
+query_pattern,output_pattern,similarity
+FGEFEDC,BAG,0.46153846
+GABC,CDE,0.92307692
+AGFE,BAG,0.76923077
+CBAG,BAG,0.69230769

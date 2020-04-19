@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+CDE,CDEFFD,0.85714286
+EF#GAGECDE,DEFFDE,0.20535714
+EEF#GAGEC,DEFFDE,0.20089286

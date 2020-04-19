@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+DRAGE-DCE-D,B-AG,0.33333333
+ARRCBAGF#EE,B-AG,0.66666667
+ARRCBAGF#EE,AGFE,0.25000000

@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+BBBB,CRCCEE,0.47916667
+GGG,CRCCEE,0.95833333
+BBBBB,CRCCEE,0.31944444

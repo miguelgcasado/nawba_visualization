@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+E-CD,GRREF#GF#,0.95833333
+F#E-CD,GRREF#GF#,0.46875000
+GF#E-CD,GRREF#GF#,0.30555556

@@ -1,0 +1,3 @@
+query_pattern,output_pattern,similarity
+FGFED,FED,0.72727273
+GFED,FED,0.81818182

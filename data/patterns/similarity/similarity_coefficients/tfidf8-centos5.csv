@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+F#E-DC,FEDC,0.42307692
+GF#E-DC,FEDC,0.38461538
+E-DC,FEDC,0.92307692

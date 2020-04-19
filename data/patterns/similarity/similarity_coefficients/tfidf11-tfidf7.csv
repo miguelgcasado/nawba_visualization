@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+BBBB,FFFGEEDD,0.42045455
+GGG,FFFGEEDD,0.84090909
+BBBBB,FFFGEEDD,0.28030303

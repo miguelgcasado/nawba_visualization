@@ -1,0 +1,3 @@
+query_pattern,output_pattern,similarity
+DEF,ARBCDCB,0.98214286
+CDEF,ARBCDCB,0.48214286

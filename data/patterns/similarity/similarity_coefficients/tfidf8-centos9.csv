@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+CDE-,EF#G,0.88888889
+GF#E-DC,AGF#E-D,0.29629630
+GF#E-D,AGF#E-D,0.44444444

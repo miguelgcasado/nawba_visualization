@@ -1,0 +1,5 @@
+query_pattern,output_pattern,similarity
+AGED,AGE,0.95238095
+ABAGE,EDC,0.76190476
+ABAGE,AGFE,0.38095238
+BAG,EDC,0.80952381

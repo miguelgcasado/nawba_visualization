@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+EF#G,ARBCDCB,0.98214286
+FEFGD,FREFEFEF,0.27976190
+FEFGD,BRRBCD,0.21428571

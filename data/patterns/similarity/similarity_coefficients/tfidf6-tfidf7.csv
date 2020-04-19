@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+GGG,FFFGEEDD,0.84090909
+ABAGE,AGF,0.95454545
+BAG,AGF,0.97727273

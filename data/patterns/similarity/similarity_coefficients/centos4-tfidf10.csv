@@ -1,0 +1,3 @@
+query_pattern,output_pattern,similarity
+B-AG,GF#E,0.71428571
+AGFE,BAGF#E,0.78571429

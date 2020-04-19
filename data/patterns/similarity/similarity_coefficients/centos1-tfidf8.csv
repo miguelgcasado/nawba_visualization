@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+DEF,CDE-,0.94117647
+CDEF,CDE-,0.88235294
+B-AG,E-DC,0.82352941

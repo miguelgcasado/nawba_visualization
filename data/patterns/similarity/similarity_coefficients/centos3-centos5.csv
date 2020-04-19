@@ -1,0 +1,5 @@
+query_pattern,output_pattern,similarity
+FGEFEDC,FEDC,0.73076923
+GABC,CDE,0.84615385
+B-AG,FEDC,0.92307692
+AGFE,EDC,0.76923077

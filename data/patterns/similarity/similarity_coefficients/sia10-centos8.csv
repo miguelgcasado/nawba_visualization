@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+DRCDED,DEF#G,0.43750000
+DREFGFEDC,EF#G,0.87500000
+GRRFEFGFE,AGF#E-D,0.31250000

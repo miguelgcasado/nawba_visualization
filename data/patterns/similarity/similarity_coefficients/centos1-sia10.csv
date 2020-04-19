@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+DEF,DREFGFE,0.91666667
+CDEF,DRDEEF#GA,0.44444444
+CBAG,DRERDRCR,0.20833333

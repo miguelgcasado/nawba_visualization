@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Nawba Tree</title>
+		<link rel="icon" href="data:;base64,=">
+		<link href="../static/style.css" rel="stylesheet" type="text/css">
+		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../static/d3.min.js"></script>
+		<script src="../static/sigma.min.js"></script>
+		<script src="../static/sigma.parsers.json.js"></script>
+		<script src="../static/sigma.renderers.customShapes.min.js"></script>
+		<script src="../static/shape-library.js"></script>
+		<script type="text/javascript" src="../static/script.js" async></script>
+		<script src="../static/sigma.layout.forceAtlas2.min.js"></script>
+		<script src="../static/sigma.layout.noverlap.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+		<div class=head_page>
+			<h1>Arab-Andalusian Patterns Visualization Tool</h1>
+		</div>
+		<div class=algorithm_selector>
+			<label>
+			<input type="checkbox" name="checkbalgorithm" id= "sia" value="sia">SIA
+				<img src="../data/icons/circle.svg" width="13" height="13"/>
+			<br/>
+			</label>
+			<label>
+			<input type="checkbox" name="checkbalgorithm" id="tfidf" value="tfidf">TF-IDF
+			<img src="../data/icons/square.svg" width="13" height="13"/>
+			<br/>
+			</label>
+			<label>
+			<input type="checkbox" name="checkbalgorithm" id="centos" value="centos">Centos
+			<img src="../data/icons/star.svg" width="13" height="13"/>
+			<br/>
+			</label>
+		</div>
+		<div class="nawba_selector">
+			<div class="family_selector">
+			<label>
+			<input type="checkbox" name="checkbfamily" id= "dhil" value="dhil">Dhil
+			</label>
+			<label>
+			<input type="checkbox" name="checkbfamily" id= "zaydan" value="zaydan">Zaydan
+			</label>
+			<label>
+			<input type="checkbox" name="checkbfamily" id= "maya" value="maya">Maya
+			</label>
+			<label>
+			<input type="checkbox" name="checkbfamily" id= "mzmum" value="mzmum">Mzmum
+			</label>
+			</div>
+			<div class="nawba_chooser"></div>
+		</div>
+		<div class=main_tree>
+			<div id="sigma-container"></div>
+			<div class="button_to_remove">
+				<button type="button" onclick="removePatterns()">Remove patterns</button>
+			</div>
+		</div>
+		<div class="score_selector">
+			<div class='mbid_selector'>
+				<select id="selectButton">Choose score</select>
+			</div>
+			<div class="button_to_plot_score">
+				<button type="button" onclick="plotScoreWithPatterns()">Plot score with patterns</button>
+			</div>
+		</div>
+		<footer>
+				<p>Designed by Miguel Garcia Casado, within the
+				<a href="https://www.upf.edu/web/musicalbridges"
+				title="Musical Bridges" target="_blank">Musical Bridges</a> project
+				(Music Technology	Group, Universitat Pompeu Fabra, Barcelona)</p>
+				Icons made by <a href="https://www.flaticon.com/authors/those-icons" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,5 @@
+query_pattern,output_pattern,similarity
+AGFE,EDC,0.86666667
+AGF#E-D,GFED,0.40000000
+CFED,FED,0.66666667
+CFED,FEDC,0.33333333

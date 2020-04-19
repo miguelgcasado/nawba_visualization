@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+CRCDECD,CDE,0.84615385
+ERAARERAAA,GGG,0.69230769
+ARBCBCBCDCB,EF#G,0.92307692

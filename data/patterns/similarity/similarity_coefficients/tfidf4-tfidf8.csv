@@ -1,0 +1,5 @@
+query_pattern,output_pattern,similarity
+EF#GAGECDE,CDE-,0.94117647
+GFED,E-DC,0.76470588
+FED,E-DC,0.82352941
+EEF#GAGEC,CDE-,0.88235294

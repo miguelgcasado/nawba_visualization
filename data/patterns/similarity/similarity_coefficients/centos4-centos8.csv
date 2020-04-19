@@ -1,0 +1,3 @@
+query_pattern,output_pattern,similarity
+CDE,DEF#G,0.93750000
+B-AG,FED,0.87500000

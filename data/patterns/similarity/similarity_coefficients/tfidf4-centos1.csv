@@ -1,0 +1,3 @@
+query_pattern,output_pattern,similarity
+CDE,CDEF,0.92307692
+EEF#GAGEC,DEF,0.88461538

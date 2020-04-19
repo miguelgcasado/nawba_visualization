@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+FGEFEDC,BRCBA,0.86250000
+GABC,GRABCDCR,0.47500000
+CBAG,GRARGRFR,0.22500000

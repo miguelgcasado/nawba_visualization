@@ -1,0 +1,5 @@
+query_pattern,output_pattern,similarity
+F#GA,EFG,0.88235294
+FEDC,FED,0.82352941
+FEDC,AGF#ED,0.35294118
+CBAG,EDC,0.70588235

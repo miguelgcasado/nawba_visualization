@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+GABC,CDE,0.93333333
+EFG,F#GAGEC,0.86666667
+CBAG,AGF,0.90000000

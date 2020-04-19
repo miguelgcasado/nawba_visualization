@@ -1,0 +1,3 @@
+query_pattern,output_pattern,similarity
+FGEFEDC,E-DC,0.64705882
+B-AG,E-DC,0.82352941

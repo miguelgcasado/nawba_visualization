@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+EF#G,DREFGFE,0.91666667
+GGG,RRGGGDG,0.88888889
+GAG,DRERDRCR,0.86111111

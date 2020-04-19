@@ -1,0 +1,5 @@
+query_pattern,output_pattern,similarity
+AGFE,BAG,0.62500000
+CFED,GF#ED,0.31250000
+FEDC,GF#ED,0.68750000
+CBAG,BAG,0.50000000

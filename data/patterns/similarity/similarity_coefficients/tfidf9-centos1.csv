@@ -1,0 +1,3 @@
+query_pattern,output_pattern,similarity
+FFAGGFED,FAG,0.92307692
+DFFAG,FAG,0.88461538

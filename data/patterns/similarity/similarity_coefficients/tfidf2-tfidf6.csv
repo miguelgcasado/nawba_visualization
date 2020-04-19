@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+DEFFDE,EF#G,0.92307692
+BCDEFFDE,CDE,0.84615385
+GBCDEFF,CDE,0.76923077

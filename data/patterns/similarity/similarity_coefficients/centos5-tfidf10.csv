@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+GFE,AGF#,0.78571429
+FEDC,GF#ED,0.75000000
+FEDC,GF#E,0.71428571

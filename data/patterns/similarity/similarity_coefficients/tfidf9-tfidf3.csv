@@ -1,0 +1,4 @@
+query_pattern,output_pattern,similarity
+FFAGGFED,GFED,0.61538462
+FFAGGFED,GFE,0.46153846
+FGGFEF,GFED,0.30769231
