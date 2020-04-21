@@ -2,4 +2,6 @@
 .idea
 
 # don't add .txt to exclude some unimportant files
-*.txt
+data/patterns/*.txt
+
+/__pycache__
