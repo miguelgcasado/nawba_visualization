@@ -78,8 +78,9 @@ body {
 }
 
 #selectButton{
-  position: absolute;
+  width: 280px;
   left: 50%;
+  margin-left:290px;
 }
 
 .button_to_plot_score{

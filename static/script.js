@@ -2,7 +2,6 @@
 
 //read json with all data (hierarchy: family -> nawba -> mbid)
 d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNawbaMbid){
-  //var familyNawbaMbid = JSON.parse('{{ familyNawbaMbid | tojson | safe }}');
   var algorithmSelector= d3.selectAll(".algorithm_selector")
   algorithmSelector.on('change', function(d){
     removePatterns(); // every time we select a new algorithm the network graph is removed
@@ -14,7 +13,7 @@ d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNa
       nawbaSelector.selectAll("label").remove(); // refresh nawba list in nawba selector panel
       var selectedFamily = getCheckedBoxes("checkbfamily"); // get list with selected family
 
-      appendNawbaRadioButtons(nawbaSelector, selectedFamily) // add radio buttons to nawba selector panel
+      appendNawbaCheckBoxes(nawbaSelector, selectedFamily) // add radio buttons to nawba selector panel
       var nawbaChooser = d3.selectAll(".nawba_chooser");
       nawbaChooser.on('change', function(d){
         d3.selectAll('option').remove() // every time we select different nawba we refresh the drop down menu

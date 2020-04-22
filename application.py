@@ -15,15 +15,16 @@ data = DataStore()
 def index():
     # with open('static/data/selector/family_nawba_mbid.json') as json_file:
     #     familyNawbaMbid = json.load(json_file)
+    #     # familyNawbaMbid = json.dumps(familyNawbaMbid)
+    #     # familyNawbaMbid= json.loads(familyNawbaMbid)
     #     print(familyNawbaMbid)
-    #     return render_template("index.html", familyNawbaMbid=familyNawbaMbid)
+    #     return render_template("index.html", familyNawbaMbid=jsonify(familyNawbaMbid))
     return render_template("index.html")
 
 # We are defining a route along with the relevant methods for the #route, in this case they are get and post.
 @app.route("/define_graph_parameters", methods = ["POST"])
-def define_parameters():
+def define_graph_parameters():
     parameters = request.get_json()
-    print("PARAMETERS: ", parameters)
     data.selectedAlgorithms = parameters["selectedAlgorithms"]
     data.selectedNawbas = parameters["selectedNawbas"]
 
@@ -31,6 +32,7 @@ def define_parameters():
 
 @app.route("/plot_graph", methods=["GET"])
 def plot_graph():
+    print("SET DATA2", data.selectedAlgorithms, data.selectedNawbas)
     graph = make_graph.make_graph(data.selectedAlgorithms, data.selectedNawbas)
 
     return jsonify(graph)  # serialize and use JSON headers

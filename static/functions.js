@@ -21,28 +21,31 @@ function getCheckedBoxes(chkboxName) {
   return checkboxesChecked.length > 0 ? checkboxesChecked : " ";
 };
 
-function appendNawbaRadioButtons(nawbaSelector, selectedFamily){
+function appendNawbaCheckBoxes(nawbaSelector, selectedFamily){
   /* Function that, given a list of the selected families, add radio buttons
    of the corresponding nawbas in the nawba selector panel*/
+   console.log(typeof(selectedFamily))
+  if (typeof selectedFamily == "string"){}
+  else{
+    var nawbasToShow = []; // get list of nawbas inside the selected families
+    for (i = 0; i < selectedFamily.length; i++){
+      nawbasToShow.push(familyNawbas[selectedFamily[i]])
+    }
+    nawbasToShow = [].concat.apply([], nawbasToShow);
 
-  var nawbasToShow = []; // get list of nawbas inside the selected families
-  for (i = 0; i < selectedFamily.length; i++){
-    nawbasToShow.push(familyNawbas[selectedFamily[i]])
+    nawbaSelector.selectAll("label") // add nawba radio buttons from nawbasToShow list
+    .data(nawbasToShow)
+    .enter()
+    .append("label")
+    .style("color", function(d){return mappingNawbaColor[d]})
+    .text(function(d) {return d + " (" + idNawbaName[d] + ")"})
+    .append("input")
+    .attr("type", "checkbox")
+    .attr("name", "checkbnawba")
+    .attr("id", function(d){return idNawbaName[d]})
+    .attr("value", function(d){return d})
+    .attr("style", "float:left")
   }
-  nawbasToShow = [].concat.apply([], nawbasToShow);
-
-  nawbaSelector.selectAll("label") // add nawba radio buttons from nawbasToShow list
-  .data(nawbasToShow)
-  .enter()
-  .append("label")
-  .style("color", function(d){return mappingNawbaColor[d]})
-  .text(function(d) {return d + " (" + idNawbaName[d] + ")"})
-  .append("input")
-  .attr("type", "checkbox")
-  .attr("name", "checkbnawba")
-  .attr("id", function(d){return idNawbaName[d]})
-  .attr("value", function(d){return d})
-  .attr("style", "float:right")
 };
 
 function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily, selectedNawbas){

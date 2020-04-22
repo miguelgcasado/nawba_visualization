@@ -13,9 +13,9 @@ var idNawbaName = {"1": "raml al-m\u0101ya",
                   "10": "‘ir\u0101q al-‘a\u0177am",
                   "11": "al-\u2018u\u0161\u0161\u0101q"};
 
-  var mappingNawbaColor = {"1": "#FFFF66",
+  var mappingNawbaColor = {"1": "#14AA06",
                 "2": "#87CEEB",
-                "3": "#CCCC00",
+                "3": "#065003",
                 "4": "#F08080",
                 "5": "#B22222",
                 "6": "#00BFFF",
