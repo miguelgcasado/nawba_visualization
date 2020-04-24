@@ -75,6 +75,7 @@ function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily,
       .text(function (d) { return d; }) // text showed in the menu
       .attr("value", function (d) { return d; })
     }
+    return mbidsToShow[0]
 };
 
 function createGraphDict(nodesEdges){
@@ -103,4 +104,32 @@ function createGraphDict(nodesEdges){
     });
   };
   return g;
+};
+
+function plotScoreWithPatterns(selectedMbid){
+  // send POST request to send the data of the selected algorithms and nawbas
+  fetch('/define_score_parameters', {
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify({"selectedMbid": selectedMbid}),
+    cache: "no-cache",
+    headers: new Headers({
+      "content-type": "application/json",
+      'Accept': 'application/json'
+    })
+  }).then(function (response) {
+        if (response.status !== 200) {
+          console.log(`Looks like there was a problem. Status code: ${response.status}`);
+          return;
+        }
+      }).catch(function (error) {
+        console.log("Fetch error: " + error);
+      });
+
+  // send the request for the data to plot the network graph
+  fetch('/plot_score')
+  .then(function (response) {
+      return 0;
+  })
+  window.open('/plot_score');
 };

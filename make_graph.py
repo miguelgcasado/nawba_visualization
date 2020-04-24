@@ -5,9 +5,9 @@ import json
 import networkx as nx
 import itertools as it
 
-nawba_colors = {"1": "#FFFF66",
+nawba_colors = {"1": "#14AA06",
                 "2": "#87CEEB",
-                "3": "#CCCC00",
+                "3": "#065003",
                 "4": "#F08080",
                 "5": "#B22222",
                 "6": "#00BFFF",

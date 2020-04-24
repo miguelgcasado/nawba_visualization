@@ -1,0 +1,24 @@
+<html>
+	    <head>
+	        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	        <title>Music21 Fragment</title>
+			<script src="../static/opensheetmusicdisplay.min.js"></script>
+			<link rel="icon" href="data:;base64,=">
+		</head>
+		<body>
+			<span id='message'>May take a while to load large musicXML...<span>
+			<pre id='xml-div'></pre>
+			<script>
+			function myFunc(vars) {
+    		return vars
+			}
+			scorePath = myFunc({{scorePath|tojson}});
+			console.log(scorePath.scorePath);
+
+
+			  var openSheetMusicDisplay = new opensheetmusicdisplay.OpenSheetMusicDisplay("xml-div");
+			  openSheetMusicDisplay.load(scorePath.scorePath).then(function(){
+				openSheetMusicDisplay.render()});
+				// var message = document.getElementById("message").textContent="";
+			</script>
+		</body>

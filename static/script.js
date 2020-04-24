@@ -21,8 +21,8 @@ d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNa
         selectedAlgorithms = getCheckedBoxes("checkbalgorithm");
         selectedFamily = getCheckedBoxes("checkbfamily");
         var selectedNawbas = getCheckedBoxes("checkbnawba"); // get selected nawbas
-        addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily, selectedNawbas) // add mbid to dropdown menu
-
+        var selectedMbid = addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily, selectedNawbas) // add mbid to dropdown menu
+        console.log(selectedMbid)
         // Backend
         console.log(selectedNawbas)
         var jsonToSendBackEnd = {"selectedAlgorithms": selectedAlgorithms, "selectedNawbas": selectedNawbas};
@@ -73,6 +73,14 @@ d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNa
                new Audio('../static/data/patterns/' + e.data.node.algorithm + '/' + e.data.node.nawba + '/' + e.data.node.id + '.wav').play();
              });
             s.refresh();
+          });
+          // code for taking selected mbid
+
+          d3.select("#selectButton").on("change", function(d){
+            selectedMbid = this.options[this.selectedIndex].value;
+          });
+          d3.select("#plotscore").on("click", function(d){
+            plotScoreWithPatterns(selectedMbid);
           });
         });
       }); //nawba chooser

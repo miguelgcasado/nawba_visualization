@@ -3,5 +3,6 @@
 
 # don't add .txt to exclude some unimportant files
 data/patterns/*.txt
+data/scores/scores_xml/*
 
 /__pycache__
