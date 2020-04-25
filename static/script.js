@@ -70,7 +70,13 @@ d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNa
               }
             });
              s.bind('clickNode', function(e) { // play wav file when clicking on each node
-               new Audio('../static/data/patterns/' + e.data.node.algorithm + '/' + e.data.node.nawba + '/' + e.data.node.id + '.wav').play();
+               var pattern = e.data.node.id;
+               if (e.data.node.id.includes('#')){
+                 var pattern = e.data.node.id.replace('#','x');
+               }
+               var path = '../static/data/patterns/' + e.data.node.algorithm + '/' + e.data.node.nawba + '/' + pattern + '.wav'
+               console.log(path)
+               new Audio(path).play();
              });
             s.refresh();
           });

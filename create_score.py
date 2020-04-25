@@ -30,7 +30,7 @@ def paint_patterns_in_score(selected_algorithms, selected_nawbas, selected_mbid)
 
     s = m21.converter.parse('static/data/scores/scores_xml/' + selected_mbid + '.xml')
     p = s.parts[0]
-    notes = p.flat.notesAndRests.stream()
+    notes_and_rests = p.flat.notesAndRests.stream()
 
     with open('static/data/patterns/patterns.json') as json_file:
         all_patterns = json.load(json_file)
@@ -39,13 +39,16 @@ def paint_patterns_in_score(selected_algorithms, selected_nawbas, selected_mbid)
         for nawba in selected_nawbas:
             for pattern in all_patterns[algorithm][nawba]:
                 length = len(separate_string_pattern_in_notes(pattern))
-                for i in range(len(notes[:-length+1])):
+                for i in range(len(notes_and_rests[:-length+1])):
                     buffer = []
                     for j in range(length):
-                        buffer.append(notes[i+j])
+                        buffer.append(notes_and_rests[i+j])
                     phrase = ''
                     for n in buffer:
-                        phrase += n.name
+                        if n.isRest:
+                            phrase += "R"
+                        else:
+                            phrase += n.name
                     if phrase == pattern:
                         for bn in buffer:
                             bn.style.color = nawba_colors[nawba]

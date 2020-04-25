@@ -1,16 +1,22 @@
 body {
   font-family: 'Roboto', sans-serif;
-  width: 860px;
-  height: 1000px;
+  font-size: 25px;
+  width: 1300px;
+  height: 1150px;
   margin: 0 auto;
 
+  padding-right: 50px;
 }
-
+.explanation{
+  height: 280px;
+  background-color: #DBDAD9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
 .head_page {
-  /* background-color: linear-gradient(rgba(255, 165, 0), rgba(255, 69, 0)); */
   background-color: #F3BA6C;
-  padding-left: 20px;
-  padding-right: 20px;
   padding-top: 5px;
   padding-bottom: 10px;
 }
@@ -22,16 +28,32 @@ body {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 5px;
-  height: 25px;
+  height: 30px;
+  vertical-align: middle;
+}
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
 }
 
+input[name="checkbalgorithm"] {
+  position: relative;
+  vertical-align: middle;
+}
+
+label.checkbox-label input[type=checkbox]{
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    bottom: 1px;
+}
 .nawba_selector{
   display: flex;
   background-color: #DBDAD9;
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 5px;
-  height: 80px;
+  height: 125px;
 }
 
 .family_selector{
@@ -52,7 +74,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 5px;
-  height: 620px;
+  height: 800px;
 }
 
 #sigma-container {
@@ -69,22 +91,29 @@ body {
 
 .score_selector{
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 40% 60%;
   background-color: #DBDAD9;
   padding: 10px;
   border-radius: 5px;
-  margin-bottom: 5px;
-  height: 80px;
+  /* margin-bottom: px; */
+  height: 40px;
 }
 
 #selectButton{
-  width: 280px;
+  width: 450px;
+  height: 30px;
   left: 50%;
-  margin-left:290px;
+  font-size: 20px;
+  /* margin-left:290px; */
 }
 
-.button_to_plot_score{
+/* .button_to_plot_score{
   margin: 0 auto;
+} */
+
+button[type="button"]{
+  font-size: 20px;
+  width: 300px;
 }
 
 h1 {
@@ -92,11 +121,8 @@ h1 {
 }
 
 footer {
-  margin-top: 15px;
-  font-size: 10px;
+  height: 140px;
+  margin-top: 5px;
+  font-size: 17px;
   background-color: #F3BA6C;
-}
-
-footer p {
-  margin: 0;
 }
