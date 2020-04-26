@@ -146,7 +146,7 @@ function plotScoreWithPatterns(selectedMbid, selectedSection){
         console.log("Fetch error: " + error);
       });
 
-  // send the request for the data to plot score
+  // send the request for the data to plot the network graph
   fetch('/plot_score')
   .then(function (response) {
       return 0;

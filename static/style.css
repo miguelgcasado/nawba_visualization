@@ -1,10 +1,14 @@
+html{
+  width: 0px;
+  height: 0px;
+}
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 25px;
   width: 1300px;
   height: 1150px;
   margin: 0 auto;
-
+  transform: scale(0.7);
   padding-right: 50px;
 }
 .explanation{

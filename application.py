@@ -2,6 +2,7 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
     jsonify
 import glob
 import os
+import time
 
 import make_graph
 import create_score
@@ -44,6 +45,7 @@ def plot_graph():
     """
     Function that call make_graph() and send the data to JS.
     """
+    graph = None
     graph = make_graph.make_graph(data.selectedAlgorithms, data.selectedNawbas)
 
     return jsonify(graph)  # serialize and use JSON headers
@@ -69,8 +71,10 @@ def plot_score():
                                                       data.selectedNawbas,
                                                       data.selectedMbid,
                                                       data.selectedSection)
-
-    return render_template('score.html', scorePath={'scorePath': str('../' + score_path), 'selectedMbid': data.selectedMbid})
+    while not os.path.exists(score_path):
+        time.sleep(1)
+    if os.path.isfile(score_path):
+        return render_template('score.html', scorePath={'scorePath': str('../' + score_path), 'selectedMbid': data.selectedMbid})
 
 if __name__ == "__main__":
     app.run(debug=True)
