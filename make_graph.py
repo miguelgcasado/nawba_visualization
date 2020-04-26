@@ -16,6 +16,7 @@ nawba_colors = {"1": "#14AA06",
                 "9": "#4682B4",
                 "10": "#FF0000",
                 "11": "#7B68EE"}
+
 algorithms_shape = {"sia": "circle", "tfidf": "square", "centos": "star"}
 coef_path = "static/data/patterns/similarity/similarity_coefficients/"
 algorithms = ["sia", "tfidf", "centos"]
@@ -28,6 +29,12 @@ selected_algorithms = ["centos","tfidf"]
 selected_nawbas = ["1","2", "3"]
 
 def make_graph (selected_algorithms, selected_nawbas):
+    """
+    Function that given a list of algorithms and nawbas create a network graph by similarity between patterns.
+    :param selected_algorithms: list of selected algorithms in the UI.
+    :param selected_nawbas: list of selected nawbas in the UI.
+    :return: dictionary of nodes and edges of the network graph.
+    """
     G = nx.Graph()
     patterns_to_plot = []
     for selected_algorithm in selected_algorithms:

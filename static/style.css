@@ -75,6 +75,7 @@ label.checkbox-label input[type=checkbox]{
   border-radius: 5px;
   margin-bottom: 5px;
   height: 800px;
+  border: 5px solid #DBDAD9;
 }
 
 #sigma-container {
@@ -91,25 +92,36 @@ label.checkbox-label input[type=checkbox]{
 
 .score_selector{
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-rows: 1fr 1fr;
   background-color: #DBDAD9;
   padding: 10px;
   border-radius: 5px;
-  /* margin-bottom: px; */
-  height: 40px;
+  height: 100px;
 }
 
-#selectButton{
+.dropdowns{
+  grid-template-columns: 1fr 1fr;
+  padding-left: 200px;
+}
+
+#selectMbidButton{
   width: 450px;
   height: 30px;
-  left: 50%;
+  /* left: 50%; */
   font-size: 20px;
   /* margin-left:290px; */
 }
 
-/* .button_to_plot_score{
+#selectSectionButton{
+  width: 450px;
+  height: 30px;
+  font-size: 20px;
+  /* margin-left:290px; */
+}
+
+.button_to_plot_score{
   margin: 0 auto;
-} */
+}
 
 button[type="button"]{
   font-size: 20px;
@@ -121,7 +133,7 @@ h1 {
 }
 
 footer {
-  height: 140px;
+  height: 180px;
   margin-top: 5px;
   font-size: 17px;
   background-color: #F3BA6C;

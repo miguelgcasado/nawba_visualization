@@ -49,6 +49,7 @@ function appendNawbaCheckBoxes(nawbaSelector, selectedFamily){
 };
 
 function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily, selectedNawbas){
+  /*Function that, given parameters, add corresponding mbids to the dropdown menu*/
   var mbidsInNawbas = [];
   if (selectedAlgorithms != [] && selectedNawbas != []){
     for (i = 0; i < selectedFamily.length; i++){
@@ -67,7 +68,7 @@ function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily,
       }
     }
 
-    d3.select("#selectButton")
+    d3.select("#selectMbidButton")
       .selectAll('myOptions')
       .data(mbidsToShow)
       .enter()
@@ -78,7 +79,24 @@ function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily,
     return mbidsToShow[0]
 };
 
+function addSectionsToDropDown(mbidSections, selectedMbid){
+  /*Function that, given parameters, add corresponding sections to the dropdown menu*/
+  var listOfSections = ["All score"]
+  listOfSections = listOfSections.concat(Object.keys(mbidSections[selectedMbid]));
+  console.log(listOfSections)
+  d3.select("#selectSectionButton")
+    .selectAll('myOptions')
+    .data(listOfSections)
+    .enter()
+    .append('option')
+    .text(function (d) { return d; }) // text showed in the menu
+    .attr("value", function (d) { return d; })
+
+  return listOfSections[0]
+};
+
 function createGraphDict(nodesEdges){
+  /*Function that transform obtained dict from python to right format to be represented by sigma JS*/
   var g = {nodes: [],edges: []} // save the received data into a dictionary
   for (i = 0; i < nodesEdges['nodes'].length; i++) {
     var node = {
@@ -106,12 +124,14 @@ function createGraphDict(nodesEdges){
   return g;
 };
 
-function plotScoreWithPatterns(selectedMbid){
-  // send POST request to send the data of the selected algorithms and nawbas
+function plotScoreWithPatterns(selectedMbid, selectedSection){
+  /*Function that open new tab with corresponding score (with painted patterns)*/
+
+  // send POST request to send the data of the selected mbid and section
   fetch('/define_score_parameters', {
     method: "POST",
     credentials: "include",
-    body: JSON.stringify({"selectedMbid": selectedMbid}),
+    body: JSON.stringify({"selectedMbid": selectedMbid, "selectedSection": selectedSection}),
     cache: "no-cache",
     headers: new Headers({
       "content-type": "application/json",
@@ -126,10 +146,10 @@ function plotScoreWithPatterns(selectedMbid){
         console.log("Fetch error: " + error);
       });
 
-  // send the request for the data to plot the network graph
+  // send the request for the data to plot score
   fetch('/plot_score')
   .then(function (response) {
       return 0;
   })
-  window.open('/plot_score');
+  window.open('/plot_score'); // open score in a new tab
 };

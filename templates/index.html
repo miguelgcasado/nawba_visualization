@@ -28,9 +28,9 @@
 			<li>In order to visualize and listen to the patterns, you need to select the desired group (represented with shape),
 			family of nawab&#257;t and nawba (represented with colors).</p>
 			<li>Once the pattern map is plotted, you can zoom in/out around the graph and click on each node to listen to it.
-				Each pattern is linked to other similar patterns, spacial position has no relation with the similarity.</p>
-			<li>If you want to see the plotted patterns in the context of a score, you can select a specific MBID and clicking
-			"Plot on score" button.</li>
+				Each pattern is linked to other similar patterns, spatial position has no relation with the similarity.</p>
+			<li>If you want to see the plotted patterns in the context of a score, you can select a specific <i>Music Brainz ID</i>
+				and section of the piece with the dropdown widgets and click on "Plot on score" button.</li>
 		</ul>
 		</div>
 		<div class=algorithm_selector>
@@ -71,13 +71,20 @@
 			<div id="sigma-container"></div>
 			<!-- <div class="button_to_remove">
 				<button type="button" onclick="removePatterns()">Remove patterns</button>
-			</div>
-		</div> -->
+			</div> -->
+		</div>
 		<div class="score_selector">
-			<div class='mbid_selector'>
-				<select id="selectButton">
-					<option selected="selected">Choose mbid...</option>
-				</select>
+			<div class="dropdowns">
+				<!-- <div class='mbid_selector'> -->
+					<select id="selectMbidButton">
+						<option selected="selected">Choose mbid...</option>
+					</select>
+				<!-- </div> -->
+				<!-- <div class='section_selector'> -->
+					<select id="selectSectionButton">
+						<option selected="selected">Choose section...</option>
+					</select>
+				<!-- </div> -->
 			</div>
 			<div class="button_to_plot_score">
 				<button type="button" id="plotscore">Plot score with patterns</button>
@@ -85,18 +92,21 @@
 			</div>
 		</div>
 		<footer>
-				<p style="padding-left: 50px">Designed by Miguel García Casado, within the his Master Thesis on the
-				Music Technology	Group, Universitat Pompeu Fabra, Barcelona</p>
+				<p style="padding-left: 50px">Designed by Miguel García Casado (<a href="miguel.garciac@upf.edu">miguel.garciac@upf.edu</a>),
+					within his Master Thesis on the Music Technology	Group, Universitat Pompeu Fabra, Barcelona</p>
 				<p style="padding-left: 50px">This tool is inspired in Sankalp Gulati's
 					<a href="https://dunya.compmusic.upf.edu/pattern_network/"
 					title="Discovery similar phrases in Carnatic Music"
 					target="_blank">
 					"Discovery similar phrases in Carnatic Music"</a>
 				</p>
-					<p style="padding-left: 50px"><a href="https://github.com/julian-urbano/MelodyShape"
-								title="MelodyShape"
-								target="_blank">MelodyShape tool</a> from Julián Urbano was used to compute melodic similarity between patterns
-					</p>
+				<p style="padding-left: 50px"><a href="https://github.com/julian-urbano/MelodyShape"
+							title="MelodyShape"
+							target="_blank">MelodyShape tool</a> from Julián Urbano was used to compute melodic similarity between patterns
+				</p>
+				<p style="padding-left: 50px">
+					For more information about the Arab-Andalusian dataset, please refer to <a href="https://dunya.compmusic.upf.edu/andalusian/info" title="Dunya" target="_blank">Dunya webpage</a>
+				</p>
 				<p style="padding-left: 50px">
 					Icons made by <a href="https://www.flaticon.com/authors/those-icons" title="Those Icons" target="_blank">Those Icons</a>
 				</p>

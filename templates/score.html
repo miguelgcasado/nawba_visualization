@@ -6,19 +6,18 @@
 			<link rel="icon" href="data:;base64,=">
 		</head>
 		<body>
-			<span id='message'>May take a while to load large musicXML...<span>
+			<text id='dunya' style='font-size: 30px'> You can check and listen to the score in this
+				<a href="https://dunya.compmusic.upf.edu/andalusian/recording/{{scorePath.selectedMbid}}">link</a>
+			</text>
 			<pre id='xml-div'></pre>
 			<script>
 			function myFunc(vars) {
     		return vars
 			}
 			scorePath = myFunc({{scorePath|tojson}});
-			console.log(scorePath.scorePath);
-
-
-			  var openSheetMusicDisplay = new opensheetmusicdisplay.OpenSheetMusicDisplay("xml-div");
-			  openSheetMusicDisplay.load(scorePath.scorePath).then(function(){
-				openSheetMusicDisplay.render()});
-				// var message = document.getElementById("message").textContent="";
+			// console.log(scorePath.scorePath);
+		  var openSheetMusicDisplay = new opensheetmusicdisplay.OpenSheetMusicDisplay("xml-div");
+		  openSheetMusicDisplay.load(scorePath.scorePath).then(function(){
+			openSheetMusicDisplay.render()});
 			</script>
 		</body>

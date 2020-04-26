@@ -1,4 +1,3 @@
-import os
 import json
 import music21 as m21
 
@@ -13,8 +12,16 @@ nawba_colors = {"1": "#14AA06",
                 "9": "#4682B4",
                 "10": "#FF0000",
                 "11": "#7B68EE"}
+with open('static/data/patterns/patterns.json') as json_file:
+    all_patterns = json.load(json_file)
+
+with open('static/data/scores/mbid_sections.json') as json_file:
+    mbid_section = json.load(json_file)
 
 def separate_string_pattern_in_notes(pattern):
+    """
+    Function that separate a string of notes in list of notes
+    """
     output = []
     cont = 0
     for idx in range(len(pattern) - 1):
@@ -26,15 +33,21 @@ def separate_string_pattern_in_notes(pattern):
         output.append(pattern[-1])
     return output
 
-def paint_patterns_in_score(selected_algorithms, selected_nawbas, selected_mbid):
-
+def paint_patterns_in_score(selected_algorithms, selected_nawbas, selected_mbid, selected_section):
+    """
+    Function that, given list of selected algorithms, nawbas, mbid and section, create score with corresponding
+    painted patterns in that score.
+    """
     s = m21.converter.parse('static/data/scores/scores_xml/' + selected_mbid + '.xml')
     p = s.parts[0]
-    notes_and_rests = p.flat.notesAndRests.stream()
-
-    with open('static/data/patterns/patterns.json') as json_file:
-        all_patterns = json.load(json_file)
-
+    if "score" not in selected_section:
+        segment = p.getElementsByOffset(float(mbid_section[selected_mbid][selected_section][0]),
+                                  float(mbid_section[selected_mbid][selected_section][1]),
+                                  mustBeginInSpan=False,
+                                  includeElementsThatEndAtStart=False).stream()
+    else:
+        segment = p
+    notes_and_rests = segment.flat.notesAndRests.stream()
     for algorithm in selected_algorithms:
         for nawba in selected_nawbas:
             for pattern in all_patterns[algorithm][nawba]:
@@ -53,6 +66,6 @@ def paint_patterns_in_score(selected_algorithms, selected_nawbas, selected_mbid)
                         for bn in buffer:
                             bn.style.color = nawba_colors[nawba]
     output_path = 'static/data/scores/output_scores/' + selected_mbid + '.musicxml'
-    s.write('musicxml', fp= output_path)
+    segment.write('musicxml', fp= output_path)
     return output_path
 
