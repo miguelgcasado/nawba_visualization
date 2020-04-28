@@ -24,7 +24,6 @@ function getCheckedBoxes(chkboxName) {
 function appendNawbaCheckBoxes(nawbaSelector, selectedFamily){
   /* Function that, given a list of the selected families, add radio buttons
    of the corresponding nawbas in the nawba selector panel*/
-   console.log(typeof(selectedFamily))
   if (typeof selectedFamily == "string"){}
   else{
     var nawbasToShow = []; // get list of nawbas inside the selected families
@@ -58,7 +57,7 @@ function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily,
       }
     }
     mbidsInNawbas = [].concat.apply([], mbidsInNawbas)
-    console.log(mbidsInNawbas)
+    // console.log(mbidsInNawbas)
     var mbidsToShow = [];
     for (i = 0; i < mbidsInNawbas.length; i++){
       if (mbidsInNawbas[i] != null){
@@ -83,7 +82,7 @@ function addSectionsToDropDown(mbidSections, selectedMbid){
   /*Function that, given parameters, add corresponding sections to the dropdown menu*/
   var listOfSections = ["All score"]
   listOfSections = listOfSections.concat(Object.keys(mbidSections[selectedMbid]));
-  console.log(listOfSections)
+  // console.log(listOfSections)
   d3.select("#selectSectionButton")
     .selectAll('myOptions')
     .data(listOfSections)
@@ -108,6 +107,7 @@ function createGraphDict(nodesEdges){
       x: nodesEdges['nodes'][i]['x'],
       y: nodesEdges['nodes'][i]['y'],
       size: 5,
+      label: "P" + (i+1).toString(),
     };
     g.nodes.push(node)
   };
@@ -124,14 +124,82 @@ function createGraphDict(nodesEdges){
   return g;
 };
 
-function plotScoreWithPatterns(selectedMbid, selectedSection){
+function plotNetwork(nodesEdges){
+  var g = createGraphDict(nodesEdges); // generate dictionary with graph data (nodes and edges)
+  // console.log(g)
+  s = new sigma({ // create sigmajs graph from dictionary
+    graph: g,
+    renderer: {
+      // IMPORTANT:
+      // This works only with the canvas renderer, so the
+      // renderer type set as "canvas" is necessary here.
+      container: document.getElementById('sigma-container'),
+      type: sigma.renderers.canvas,
+    },
+    settings: {
+         defaultLabelSize: 30,
+         drawLabels: false,
+         singleHover: true,
+         //labelThreshold: 12,
+         // defaultLabelColor: "#FFF",
+         // borderSize: 0.5,
+         // defaultNodeBorderColor: 'black',
+         zoomingRatio: 2,
+         zoomMax: 5
+    }
+  });
+   s.bind('clickNode', function(e) { // play wav file when clicking on each node
+     var pattern = e.data.node.id;
+     if (e.data.node.id.includes('#')){ // might be errors qhen '#' in filename
+       var pattern = e.data.node.id.replace('#','x');
+     }
+     var path = '../static/data/patterns/' + e.data.node.algorithm + '/' + e.data.node.nawba + '/' + pattern + '.wav'
+     // console.log(path)
+     new Audio(path).play();
+   });
+    s.refresh();
+    var patternsToPlot = []
+    for (i = 0; i < g.nodes.length ; i++){
+      patternsToPlot.push([g.nodes[i].id, g.nodes[i].label, g.nodes[i].nawba])
+    }
+    console.log(patternsToPlot)
+    return patternsToPlot
+};
+
+function plotGraphPostProcess(selectedAlgorithms, selectedNawbas){
+  var jsonToSendBackEnd = {"selectedAlgorithms": selectedAlgorithms, "selectedNawbas": selectedNawbas};
+
+  // send POST request to send the data of the selected algorithms and nawbas
+  var patternsToPlot = fetch('/plot_graph', {
+    method: "POST",
+    credentials: "include",
+    body: JSON.stringify(jsonToSendBackEnd),
+    cache: "no-cache",
+    headers: new Headers({
+      "content-type": "application/json",
+      'Accept': 'application/json'
+    })
+  }).then(function (response) {
+        return response.json();
+      }).then(function(nodesEdges){
+        var patternsToPlot = plotNetwork(nodesEdges);
+        console.log(patternsToPlot)
+        return patternsToPlot;
+      }).catch(function (error) {
+        console.log("Fetch error: " + error);
+      });
+
+  return patternsToPlot;
+};
+
+function plotScoreWithPatterns(patternsToPlot, selectedMbid, selectedSection){
   /*Function that open new tab with corresponding score (with painted patterns)*/
 
   // send POST request to send the data of the selected mbid and section
-  fetch('/define_score_parameters', {
+  fetch('/plot_score', {
     method: "POST",
     credentials: "include",
-    body: JSON.stringify({"selectedMbid": selectedMbid, "selectedSection": selectedSection}),
+    body: JSON.stringify({"patternsToPlot": patternsToPlot, "selectedMbid": selectedMbid, "selectedSection": selectedSection}),
     cache: "no-cache",
     headers: new Headers({
       "content-type": "application/json",
@@ -142,14 +210,11 @@ function plotScoreWithPatterns(selectedMbid, selectedSection){
           console.log(`Looks like there was a problem. Status code: ${response.status}`);
           return;
         }
+        else{
+          window.open('/plot_score'); // open score in a new tab
+        }
       }).catch(function (error) {
         console.log("Fetch error: " + error);
       });
 
-  // send the request for the data to plot the network graph
-  fetch('/plot_score')
-  .then(function (response) {
-      return 0;
-  })
-  window.open('/plot_score'); // open score in a new tab
 };

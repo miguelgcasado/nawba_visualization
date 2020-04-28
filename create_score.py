@@ -7,7 +7,7 @@ nawba_colors = {"1": "#14AA06",
                 "4": "#F08080",
                 "5": "#B22222",
                 "6": "#00BFFF",
-                "7": "#494B4B",
+                "7": "#9A4D08",
                 "8": "#0000FF",
                 "9": "#4682B4",
                 "10": "#FF0000",
@@ -33,7 +33,7 @@ def separate_string_pattern_in_notes(pattern):
         output.append(pattern[-1])
     return output
 
-def paint_patterns_in_score(selected_algorithms, selected_nawbas, selected_mbid, selected_section):
+def paint_patterns_in_score(patterns_to_plot, selected_mbid, selected_section):
     """
     Function that, given list of selected algorithms, nawbas, mbid and section, create score with corresponding
     painted patterns in that score.
@@ -48,23 +48,29 @@ def paint_patterns_in_score(selected_algorithms, selected_nawbas, selected_mbid,
     else:
         segment = p
     notes_and_rests = segment.flat.notesAndRests.stream()
-    for algorithm in selected_algorithms:
-        for nawba in selected_nawbas:
-            for pattern in all_patterns[algorithm][nawba]:
-                length = len(separate_string_pattern_in_notes(pattern))
-                for i in range(len(notes_and_rests[:-length+1])):
-                    buffer = []
-                    for j in range(length):
-                        buffer.append(notes_and_rests[i+j])
-                    phrase = ''
-                    for n in buffer:
-                        if n.isRest:
-                            phrase += "R"
-                        else:
-                            phrase += n.name
-                    if phrase == pattern:
-                        for bn in buffer:
-                            bn.style.color = nawba_colors[nawba]
+    for pattern in patterns_to_plot:
+        length = len(separate_string_pattern_in_notes(pattern[0]))
+        for i in range(len(notes_and_rests[:-length+1])):
+            buffer = []
+            for j in range(length):
+                buffer.append(notes_and_rests[i+j])
+            phrase = ''
+            for n in buffer:
+                if n.isRest:
+                    phrase += "R"
+                else:
+                    phrase += n.name
+            if phrase == pattern[0]:
+                if buffer[0].lyric is None:
+                    buffer[0].lyric = pattern[1] + '.s'
+                else:
+                    buffer[0].lyric += '\n' + pattern[1]+ '.s'
+                if buffer[-1].lyric is None:
+                    buffer[-1].lyric = pattern[1]+ '.e'
+                else:
+                    buffer[-1].lyric += '\n' + pattern[1] + '.e'
+                for bn in buffer:
+                    bn.style.color = nawba_colors[pattern[2]]
     output_path = 'static/data/scores/output_scores/' + selected_mbid + '.musicxml'
     segment.write('musicxml', fp= output_path)
     return output_path

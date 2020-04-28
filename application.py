@@ -14,10 +14,8 @@ class DataStore():
     """
     Database contains selected algorithm, nawbas, mbid and section.
     """
-    selectedAlgorithms = None
-    selectedNawbas = None
-    selectedMbid = None
-    selectedSection = None
+    score_path = None
+    selected_mbid = None
 data = DataStore()
 
 @app.route('/')
@@ -29,52 +27,35 @@ def index():
     return render_template("index.html")
 
 # We are defining a route along with the relevant methods for the #route, in this case they are get and post.
-@app.route("/define_graph_parameters", methods = ["POST"])
-def define_graph_parameters():
-    """
-    Function that sets corresponding parameters in the database to plot network graph.
-    """
-    parameters = request.get_json()
-    data.selectedAlgorithms = parameters["selectedAlgorithms"]
-    data.selectedNawbas = parameters["selectedNawbas"]
-
-    return "OK"
-
-@app.route("/plot_graph", methods=["GET"])
+@app.route("/plot_graph", methods = ["POST"])
 def plot_graph():
     """
-    Function that call make_graph() and send the data to JS.
+    Function that call to make_graph() when parameters from JS (algorithms and nawbas selected)
     """
-    graph = None
-    graph = make_graph.make_graph(data.selectedAlgorithms, data.selectedNawbas)
+    parameters = request.get_json()
 
-    return jsonify(graph)  # serialize and use JSON headers
+    graph = make_graph.make_graph(parameters["selectedAlgorithms"], parameters["selectedNawbas"])
 
-@app.route("/define_score_parameters", methods = ["POST"])
-def define_score_parameters():
-    """
-    Function that sets corresponding parameters in the database to plot score.
-    """
-    selected_mbid_section = request.get_json()
+    return jsonify(graph)
 
-    data.selectedMbid = selected_mbid_section["selectedMbid"]
-    data.selectedSection = selected_mbid_section["selectedSection"]
-
-    return "OK"
-
-@app.route("/plot_score", methods=["GET"])
+@app.route("/plot_score", methods = ["POST", "GET"])
 def plot_score():
     """
-    Function that call paint_patterns_in_score() and send the data to JS.
+    Function that sets corresponding parameters (selected mbid and score path to be plotted) and plot the corresponding score
     """
-    score_path = create_score.paint_patterns_in_score(data.selectedAlgorithms,
-                                                      data.selectedNawbas,
-                                                      data.selectedMbid,
-                                                      data.selectedSection)
-    while not os.path.exists(score_path):
-        time.sleep(1)
-    if os.path.isfile(score_path):
-        return render_template('score.html', scorePath={'scorePath': str('../' + score_path), 'selectedMbid': data.selectedMbid})
+    if request.method == 'POST':
+        parameters = request.get_json()
+        data.selected_mbid = parameters['selectedMbid']
+        data.score_path = create_score.paint_patterns_in_score(parameters['patternsToPlot'],
+                                                          parameters['selectedMbid'],
+                                                          parameters['selectedSection'])
+        return "OK"
+    else:
+        while not os.path.exists(data.score_path):
+            time.sleep(1)
+        if os.path.isfile(data.score_path):
+            return render_template('score.html', scorePath={'scorePath': str('../' + data.score_path), 'selectedMbid': data.selected_mbid})
+
 
 if __name__ == "__main__":
     app.run(debug=True)
