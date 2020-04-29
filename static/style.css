@@ -7,8 +7,9 @@ body {
   width: 1300px;
   height: 100%;
   margin: 0 auto;
-  /* transform: scale(0.7); */
-  padding-right: 50px;
+  transform: scale(0.7);
+  transform-origin: 0 0;
+  padding-left: 500px;
 }
 .explanation{
   height: 280px;
@@ -33,6 +34,7 @@ body {
   margin-bottom: 5px;
   height: 30px;
   vertical-align: middle;
+  text-align: center;
 }
 input[type="checkbox"] {
   width: 20px;
