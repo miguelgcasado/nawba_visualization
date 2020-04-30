@@ -80,7 +80,7 @@ function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily,
 
 function addSectionsToDropDown(mbidSections, selectedMbid){
   /*Function that, given parameters, add corresponding sections to the dropdown menu*/
-  var listOfSections = ["All score"]
+  var listOfSections = ["Full score"]
   listOfSections = listOfSections.concat(Object.keys(mbidSections[selectedMbid]));
   // console.log(listOfSections)
   d3.select("#selectSectionButton")

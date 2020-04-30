@@ -12,11 +12,12 @@ nawba_colors = {"1": "#14AA06",
                 "9": "#4682B4",
                 "10": "#FF0000",
                 "11": "#7B68EE"}
-with open('static/data/patterns/patterns.json') as json_file:
-    all_patterns = json.load(json_file)
 
 with open('static/data/scores/mbid_sections.json') as json_file:
     mbid_section = json.load(json_file)
+
+with open('static/data/selector/mbid_title_orchestra.json') as json_file:
+    mbid_title_orchestra = json.load(json_file)
 
 def separate_string_pattern_in_notes(pattern):
     """
@@ -39,6 +40,8 @@ def paint_patterns_in_score(patterns_to_plot, selected_mbid, selected_section):
     painted patterns in that score.
     """
     s = m21.converter.parse('static/data/scores/scores_xml/' + selected_mbid + '.xml')
+    s.metadata.title = mbid_title_orchestra[selected_mbid][0]
+    s.metadata.composer = mbid_title_orchestra[selected_mbid][1]
     p = s.parts[0]
     if "score" not in selected_section:
         segment = p.getElementsByOffset(float(mbid_section[selected_mbid][selected_section][0]),
@@ -73,5 +76,6 @@ def paint_patterns_in_score(patterns_to_plot, selected_mbid, selected_section):
                     bn.style.color = nawba_colors[pattern[2]]
     output_path = 'static/data/scores/output_scores/' + selected_mbid + '.musicxml'
     segment.write('musicxml', fp= output_path)
+
     return output_path
 
