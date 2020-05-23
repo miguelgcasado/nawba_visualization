@@ -4,6 +4,7 @@
 d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNawbaMbid){
   //read json with mbid -> sections -> offsets
   d3.json("../static/data/scores/mbid_sections.json").then(function(mbidSections){
+    d3.json("../static/data/selector/mbid_title_orchestra.json").then(function(mbidTitleOrchestra){
     var selectedNawbas = -1;
     var selectedAlgorithms = -1;
     var algorithmSelector= d3.selectAll(".algorithm_selector")
@@ -27,8 +28,9 @@ d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNa
           selectedAlgorithms = getCheckedBoxes("checkbalgorithm");
           selectedFamily = getCheckedBoxes("checkbfamily");
           selectedNawbas = getCheckedBoxes("checkbnawba"); // get selected nawbas
-          var selectedMbid = addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily, selectedNawbas) // add mbid to dropdown menu
-          var selectedSection = addSectionsToDropDown(mbidSections, selectedMbid) // add sections to dropdown
+          var selectedRecording = addMbidsToDropDown(familyNawbaMbid, mbidTitleOrchestra, selectedAlgorithms, selectedFamily, selectedNawbas) // add mbid to dropdown menu
+          var selectedSection = addSectionsToDropDown(mbidSections, mbidTitleOrchestra, selectedRecording) // add sections to dropdown
+          // console.log(selectedMbid)
 
           // // Backend
           // console.log(selectedNawbas)
@@ -36,21 +38,23 @@ d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNa
           console.log(patternsToPlot)
           //taking selected mbid and section to be plotted
           d3.select("#selectMbidButton").on("change", function(d){
-            selectedMbid = this.options[this.selectedIndex].value;
+            selectedRecording = this.options[this.selectedIndex].value;
             d3.select("#selectSectionButton").html(""); // delete children of section dropdown when changing mbid
-            selectedSection = addSectionsToDropDown(mbidSections, selectedMbid)
+            selectedSection = addSectionsToDropDown(mbidSections, mbidTitleOrchestra, selectedRecording)
           });
           d3.select("#selectSectionButton").on("change", function(d){
             selectedSection = this.options[this.selectedIndex].value;
           });
           d3.select("#plotscore").on("click", function(d){
             patternsToPlot.then(function(patterns){
-              console.log(patterns)
-              plotScoreWithPatterns(patterns, selectedMbid, selectedSection);
+            console.log(patterns)
+            var selectedMbid = convertRecordingTitletoMbid(mbidTitleOrchestra, selectedRecording)
+            plotScoreWithPatterns(patterns, selectedMbid, selectedSection);
             });
           });
           });//nawba chooser
         });
       });
+     });
     });
   });

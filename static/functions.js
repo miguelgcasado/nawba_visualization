@@ -37,7 +37,7 @@ function appendNawbaCheckBoxes(nawbaSelector, selectedFamily){
     .enter()
     .append("label")
     .style("color", function(d){return mappingNawbaColor[d]})
-    .text(function(d) {return d + " (" + idNawbaName[d] + ")"})
+    .text(function(d) {return idNawbaName[d] + " (" + d + ")"})
     .append("input")
     .attr("type", "checkbox")
     .attr("name", "checkbnawba")
@@ -47,7 +47,7 @@ function appendNawbaCheckBoxes(nawbaSelector, selectedFamily){
   }
 };
 
-function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily, selectedNawbas){
+function addMbidsToDropDown(familyNawbaMbid, mbidTitleOrchestra, selectedAlgorithms, selectedFamily, selectedNawbas){
   /*Function that, given parameters, add corresponding mbids to the dropdown menu*/
   var mbidsInNawbas = [];
   if (selectedAlgorithms != [] && selectedNawbas != []){
@@ -62,7 +62,9 @@ function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily,
     for (i = 0; i < mbidsInNawbas.length; i++){
       if (mbidsInNawbas[i] != null){
         if (mbidsInNawbas[i][0] != null){
-          mbidsToShow.push(mbidsInNawbas[i][0]);
+          var title = mbidTitleOrchestra[mbidsInNawbas[i][0]][0];
+          var orchestra = mbidTitleOrchestra[mbidsInNawbas[i][0]][1];
+          mbidsToShow.push(title + '- ' + orchestra.replace(/([A-Z])/g, ' $1').trim());
         }
       }
     }
@@ -78,9 +80,10 @@ function addMbidsToDropDown(familyNawbaMbid, selectedAlgorithms, selectedFamily,
     return mbidsToShow[0]
 };
 
-function addSectionsToDropDown(mbidSections, selectedMbid){
+function addSectionsToDropDown(mbidSections, mbidTitleOrchestra, selectedRecording){
   /*Function that, given parameters, add corresponding sections to the dropdown menu*/
   var listOfSections = ["Full score"]
+  var selectedMbid = convertRecordingTitletoMbid(mbidTitleOrchestra, selectedRecording)
   listOfSections = listOfSections.concat(Object.keys(mbidSections[selectedMbid]));
   // console.log(listOfSections)
   d3.select("#selectSectionButton")
@@ -108,6 +111,7 @@ function createGraphDict(nodesEdges){
       y: nodesEdges['nodes'][i]['y'],
       size: 5,
       label: "P" + (i+1).toString(),
+      toplot: false,
     };
     g.nodes.push(node)
   };
@@ -157,7 +161,19 @@ function plotNetwork(nodesEdges){
      // console.log(path)
      new Audio(path).play();
    });
+   s.bind('rightClickNode', function(e) {
+     if (e.data.node.toplot == false){
+       e.data.node.toplot = true;
+       e.data.node.defaultNodeBorderColor = 'black';
+       e.data.node.borderSize = 1;
+     }
+     if (e.data.node.toplot == true){
+       e.data.node.toplot = false;
+       e.data.node.borderSize = 0;
+     }
+   });
     s.refresh();
+
     var patternsToPlot = []
     for (i = 0; i < g.nodes.length ; i++){
       patternsToPlot.push([g.nodes[i].id, g.nodes[i].label, g.nodes[i].nawba])
@@ -192,6 +208,7 @@ function plotGraphPostProcess(selectedAlgorithms, selectedNawbas){
   return patternsToPlot;
 };
 
+
 function plotScoreWithPatterns(patternsToPlot, selectedMbid, selectedSection){
   /*Function that open new tab with corresponding score (with painted patterns)*/
 
@@ -218,3 +235,10 @@ function plotScoreWithPatterns(patternsToPlot, selectedMbid, selectedSection){
       });
 
 };
+
+function convertRecordingTitletoMbid(mbidTitleOrchestra, titleOrchestra){
+  var titleOrchestra = titleOrchestra.split('- ')[0]
+  var selectedMbid = Object.keys(mbidTitleOrchestra).find(key => mbidTitleOrchestra[key][0] === titleOrchestra)
+
+  return selectedMbid
+}

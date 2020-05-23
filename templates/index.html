@@ -24,29 +24,36 @@
 			<h1>Arab-Andalusian Patterns Visualization Tool</h1>
 		</div>
 		<div class=explanation>
+			This visualization tool is designed to facilitate the observation and listening of Arab-Andalusian
+			patterns. The tool allows to visualize multiple patterns and their similarities at a glance and provides
+			the possibility of looking at them in a specific score from the Arab-Andalusian dataset of the <a href="https://compmusic.upf.edu/" title="Compmusic">CompMusic project</a>.
 			<ul>
-			<li>In order to visualize and listen to the patterns, you need to select the desired group (represented with shape),
-			family of nawab&#257;t and nawba (represented with colors).</p>
+			<li>In order to visualize and listen to the patterns, you need to follow the next steps:
+				<ol>
+					<li>Select the desired group (represented with shape) =>  <img src="../static/data/icons/star.svg" width="25" height="25"/>   <img src="../static/data/icons/square.svg" width="25" height="25"/>   <img src="../static/data/icons/circle.svg" width="25" height="25"/></li>
+					<li>Select the desired family of nawab&#257;t</li>
+					<li>Select the nawba (represented with colors)</li>
+			</ol>
 			<li>Once the pattern map is plotted, you can zoom in/out around the graph and click on each node to listen to it.
 				Each pattern is linked to other similar patterns, spatial position has no relation with the similarity.</p>
-			<li>If you want to see the plotted patterns in the context of a score, you can select a specific <i>Music Brainz ID</i>
+			<li>If you want to see the plotted patterns in the context of a score, you can select a specific recording
 				and section of the piece with the dropdown widgets and click on "Plot on score" button.</li>
 		</ul>
 		</div>
 		<div class=algorithm_selector>
 			<label>
-			<input type="checkbox" name="checkbalgorithm" id= "sia" value="sia">SIA
-				<img src="../static/data/icons/circle.svg" width="18" height="18"/>
+			<input type="checkbox" name="checkbalgorithm" id="centos" value="centos">Centos
+			<img src="../static/data/icons/star.svg" width="25" height="25"/>
 			<br/>
 			</label>
 			<label>
 			<input type="checkbox" name="checkbalgorithm" id="tfidf" value="tfidf">TF-IDF
-			<img src="../static/data/icons/square.svg" width="18" height="18"/>
+			<img src="../static/data/icons/square.svg" width="25" height="25"/>
 			<br/>
 			</label>
 			<label>
-			<input type="checkbox" name="checkbalgorithm" id="centos" value="centos">Centos
-			<img src="../static/data/icons/star.svg" width="18" height="18"/>
+			<input type="checkbox" name="checkbalgorithm" id= "sia" value="sia">SIA
+				<img src="../static/data/icons/circle.svg" width="25" height="25"/>
 			<br/>
 			</label>
 		</div>
@@ -65,7 +72,8 @@
 			<input type="checkbox" name="checkbfamily" id= "mzmum" value="mzmum">Mzmum
 			</label>
 			</div>
-			<div class="nawba_chooser"></div>
+			<div class="nawba_chooser">
+			</div>
 		</div>
 		<div class=main_tree>
 			<div id="sigma-container"></div>
