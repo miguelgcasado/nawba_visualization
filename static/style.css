@@ -1,6 +1,35 @@
 html{
   height: 100%;
 }
+
+.firststep {
+position: absolute;
+left: 150px;
+top: 590px;
+color: red;
+}
+
+.secondstep {
+position: absolute;
+left: 190px;
+top: 700px;
+color: red;
+}
+
+.thirdstep {
+position: absolute;
+left: 1820px;
+top: 650px;
+color: red;
+}
+
+.fourthstep {
+position: absolute;
+left: 100px;
+top: 1650px;
+color: red;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 25px;

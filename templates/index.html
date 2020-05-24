@@ -19,6 +19,10 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 	</head>
+	<div class=firststep><b> 1) Select group of patterns => </b></div>
+	<div class=secondstep></div> <!-- 2) Select nawba family -->
+	<div class=thirdstep></div> <!--  <= 3) Select nawba -->
+	<div class=fourthstep></div> <!-- 4) Select recording and section =>-->
 	<body>
 		<div class=head_page>
 			<h1>Arab-Andalusian Patterns Visualization Tool</h1>
@@ -42,12 +46,12 @@
 		</div>
 		<div class=algorithm_selector>
 			<label>
-			<input type="checkbox" name="checkbalgorithm" id="centos" value="centos">Centos
+			<input type="checkbox" name="checkbalgorithm" id="centos" value="centos" >Centos
 			<img src="../static/data/icons/star.svg" width="25" height="25"/>
 			<br/>
 			</label>
 			<label>
-			<input type="checkbox" name="checkbalgorithm" id="tfidf" value="tfidf">TF-IDF
+			<input type="checkbox" name="checkbalgorithm" id="tfidf" value="tfidf" >TF-IDF
 			<img src="../static/data/icons/square.svg" width="25" height="25"/>
 			<br/>
 			</label>
@@ -60,20 +64,19 @@
 		<div class="nawba_selector">
 			<div class="family_selector">
 			<label>
-			<input type="checkbox" name="checkbfamily" id= "dhil" value="dhil">Dhil
+			<input type="checkbox" name="checkbfamily" id= "dhil" value="dhil" >Dhil
 			</label>
 			<label>
-			<input type="checkbox" name="checkbfamily" id= "zaydan" value="zaydan">Zaydan
+			<input type="checkbox" name="checkbfamily" id= "zaydan" value="zaydan" >Zaydan
 			</label>
 			<label>
-			<input type="checkbox" name="checkbfamily" id= "maya" value="maya">Maya
+			<input type="checkbox" name="checkbfamily" id= "maya" value="maya" >Maya
 			</label>
 			<label>
-			<input type="checkbox" name="checkbfamily" id= "mzmum" value="mzmum">Mzmum
+			<input type="checkbox" name="checkbfamily" id= "mzmum" value="mzmum" >Mzmum
 			</label>
 			</div>
-			<div class="nawba_chooser">
-			</div>
+			<div class="nawba_chooser"></div>
 		</div>
 		<div class=main_tree>
 			<div id="sigma-container"></div>
@@ -85,7 +88,7 @@
 			<div class="dropdowns">
 				<!-- <div class='mbid_selector'> -->
 					<select id="selectMbidButton">
-						<option selected="selected">Choose mbid...</option>
+						<option selected="selected">Choose recording...</option>
 					</select>
 				<!-- </div> -->
 				<!-- <div class='section_selector'> -->

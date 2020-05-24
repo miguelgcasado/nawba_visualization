@@ -4,11 +4,14 @@
 d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNawbaMbid){
   //read json with mbid -> sections -> offsets
   d3.json("../static/data/scores/mbid_sections.json").then(function(mbidSections){
+    //read json with mbid -> title and orchestra
     d3.json("../static/data/selector/mbid_title_orchestra.json").then(function(mbidTitleOrchestra){
     var selectedNawbas = -1;
     var selectedAlgorithms = -1;
     var algorithmSelector= d3.selectAll(".algorithm_selector")
     algorithmSelector.on('change', function(d){
+      d3.selectAll(".firststep").html("")
+      d3.selectAll(".secondstep").html("<b> 2) Select nawba family =></b>")
       removePatterns(); // every time we select a new algorithm the network graph is removed
       selectedAlgorithms = getCheckedBoxes("checkbalgorithm"); // get list with selected algorithms
       if (selectedNawbas !== -1){
@@ -16,13 +19,16 @@ d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNa
       }
       var familySelector = d3.selectAll(".family_selector");
       familySelector.on('change', function(d){
+        d3.selectAll(".secondstep").html("")
+        d3.selectAll(".thirdstep").html("<b>  <= 3) Select nawba </b>")
         var nawbaSelector = d3.selectAll('.nawba_chooser');
         nawbaSelector.selectAll("label").remove(); // refresh nawba list in nawba selector panel
         var selectedFamily = getCheckedBoxes("checkbfamily"); // get list with selected family
-
         appendNawbaCheckBoxes(nawbaSelector, selectedFamily) // add radio buttons to nawba selector panel
         var nawbaChooser = d3.selectAll(".nawba_chooser");
         nawbaChooser.on('change', function(d){
+          d3.selectAll(".thirdstep").html("")
+          d3.selectAll(".fourthstep").html("<b> 4) Select recording and section =></b>")
           d3.selectAll('option').remove() // every time we select different nawba we refresh the drop down menu
           removePatterns(); // every time we select different nawba we refresh network graph
           selectedAlgorithms = getCheckedBoxes("checkbalgorithm");
@@ -46,6 +52,7 @@ d3.json("../static/data/selector/family_nawba_mbid.json").then(function(familyNa
             selectedSection = this.options[this.selectedIndex].value;
           });
           d3.select("#plotscore").on("click", function(d){
+            d3.selectAll(".fourthstep").html("")
             patternsToPlot.then(function(patterns){
             console.log(patterns)
             var selectedMbid = convertRecordingTitletoMbid(mbidTitleOrchestra, selectedRecording)
