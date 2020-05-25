@@ -11,7 +11,7 @@ nawba_colors = {"1": "#14AA06",
                 "8": "#0000FF",
                 "9": "#4682B4",
                 "10": "#FF0000",
-                "11": "#7B68EE"}
+                "11": "#95B300"}
 
 with open('static/data/scores/mbid_sections.json') as json_file:
     mbid_section = json.load(json_file)

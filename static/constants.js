@@ -1,6 +1,6 @@
 /* Script containing all constants used in main script.js*/
 
-var familyNawbas = {"dhil" : ["4", "5", "10"], "zaydan": ["2", "6", "8", "9", "11"], "maya": ["1", "3"], "mzmum": ["7"]}
+var familyNawbas = {"dhil" : ["4", "5", "10"], "zaydan": ["2", "6", "8", "9"], "maya": ["1", "3",  "11"], "mzmum": ["7"]}
 var idNawbaName = {"1": "raml al-m\u0101ya",
                   "2": "al-isbah\u0101n",
                   "3": "al-m\u0101ya",
@@ -23,4 +23,4 @@ var idNawbaName = {"1": "raml al-m\u0101ya",
                 "8": "#0000FF",
                 "9": "#4682B4",
                 "10": "#FF0000",
-                "11": "#7B68EE"};
+                "11": "#95B300"};
