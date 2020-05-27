@@ -15,7 +15,7 @@ nawba_colors = {"1": "#14AA06",
                 "8": "#0000FF",
                 "9": "#4682B4",
                 "10": "#FF0000",
-                "11": "#7B68EE"}
+                "11": "#95B300"}
 
 algorithms_shape = {"sia": "circle", "tfidf": "square", "centos": "star"}
 coef_path = "static/data/patterns/similarity/similarity_coefficients/"
